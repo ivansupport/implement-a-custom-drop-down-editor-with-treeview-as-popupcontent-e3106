@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Text
@@ -17,108 +16,170 @@ Imports System.Collections
 Imports System.Collections.ObjectModel
 
 Namespace CustomTreeViewComboBox
-	''' <summary>
-	''' Interaction logic for MainWindow.xaml
-	''' </summary>
-	Partial Public Class MainWindow
-		Inherits Window
-		Public Sub New()
-			InitializeComponent()
-			AddHandler Me.Loaded, AddressOf MainWindow_Loaded
-		End Sub
+    ''' <summary>
+    ''' Interaction logic for MainWindow.xaml
+    ''' </summary>
+    Partial Public Class MainWindow
+        Inherits Window
 
-		Private Sub MainWindow_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
-			Me.DataContext = Me
-			lookUpEdit.ItemsSource = Stuff.GetStuff()
-		End Sub
+        Public Sub New()
+            InitializeComponent()
+            AddHandler Me.Loaded, AddressOf MainWindow_Loaded
+        End Sub
 
+        Private Sub MainWindow_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me.DataContext = Me
+            lookUpEdit.ItemsSource = Stuff.GetStuff()
+        End Sub
+    End Class
 
-		Private Sub lookUpEdit_PopupClosing_1(ByVal sender As Object, ByVal e As DevExpress.Xpf.Editors.ClosePopupEventArgs)
+    Public Class Employee
+        Public Property ID() As Integer
+        Public Property ParentID() As Integer
+        Public Property Name() As String
+        Public Property Position() As String
+        Public Property Department() As String
+    End Class
 
-		End Sub
+    Public NotInheritable Class Stuff
 
-		Private Sub lookUpEdit_PopupClosed_1(ByVal sender As Object, ByVal e As DevExpress.Xpf.Editors.ClosePopupEventArgs)
+        Private Sub New()
+        End Sub
 
-		End Sub
+        Public Shared Function GetStuff() As List(Of Employee)
 
-	End Class
+            Dim stuff_Renamed As New List(Of Employee)()
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 1, _
+                .ParentID = 0, _
+                .Name = "Gregory S. Price", _
+                .Department = "", _
+                .Position = "President" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 2, _
+                .ParentID = 1, _
+                .Name = "Irma R. Marshall", _
+                .Department = "Marketing", _
+                .Position = "Vice President" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 3, _
+                .ParentID = 1, _
+                .Name = "John C. Powell", _
+                .Department = "Operations", _
+                .Position = "Vice President" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 4, _
+                .ParentID = 1, _
+                .Name = "Christian P. Laclair", _
+                .Department = "Production", _
+                .Position = "Vice President" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 5, _
+                .ParentID = 1, _
+                .Name = "Karen J. Kelly", _
+                .Department = "Finance", _
+                .Position = "Vice President" _
+            })
 
-	Public Class Employee
-		Private privateID As Integer
-		Public Property ID() As Integer
-			Get
-				Return privateID
-			End Get
-			Set(ByVal value As Integer)
-				privateID = value
-			End Set
-		End Property
-		Private privateParentID As Integer
-		Public Property ParentID() As Integer
-			Get
-				Return privateParentID
-			End Get
-			Set(ByVal value As Integer)
-				privateParentID = value
-			End Set
-		End Property
-		Private privateName As String
-		Public Property Name() As String
-			Get
-				Return privateName
-			End Get
-			Set(ByVal value As String)
-				privateName = value
-			End Set
-		End Property
-		Private privatePosition As String
-		Public Property Position() As String
-			Get
-				Return privatePosition
-			End Get
-			Set(ByVal value As String)
-				privatePosition = value
-			End Set
-		End Property
-		Private privateDepartment As String
-		Public Property Department() As String
-			Get
-				Return privateDepartment
-			End Get
-			Set(ByVal value As String)
-				privateDepartment = value
-			End Set
-		End Property
-	End Class
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 6, _
+                .ParentID = 2, _
+                .Name = "Brian C. Cowling", _
+                .Department = "Marketing", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 7, _
+                .ParentID = 2, _
+                .Name = "Thomas C. Dawson", _
+                .Department = "Marketing", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 8, _
+                .ParentID = 2, _
+                .Name = "Angel M. Wilson", _
+                .Department = "Marketing", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 9, _
+                .ParentID = 2, _
+                .Name = "Bryan R. Henderson", _
+                .Department = "Marketing", _
+                .Position = "Manager" _
+            })
 
-	Public NotInheritable Class Stuff
-		Private Sub New()
-		End Sub
-		Public Shared Function GetStuff() As List(Of Employee)
-			Dim stuff As New List(Of Employee)()
-			stuff.Add(New Employee() With {.ID = 1, .ParentID = 0, .Name = "Gregory S. Price", .Department = "", .Position = "President"})
-			stuff.Add(New Employee() With {.ID = 2, .ParentID = 1, .Name = "Irma R. Marshall", .Department = "Marketing", .Position = "Vice President"})
-			stuff.Add(New Employee() With {.ID = 3, .ParentID = 1, .Name = "John C. Powell", .Department = "Operations", .Position = "Vice President"})
-			stuff.Add(New Employee() With {.ID = 4, .ParentID = 1, .Name = "Christian P. Laclair", .Department = "Production", .Position = "Vice President"})
-			stuff.Add(New Employee() With {.ID = 5, .ParentID = 1, .Name = "Karen J. Kelly", .Department = "Finance", .Position = "Vice President"})
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 10, _
+                .ParentID = 3, _
+                .Name = "Harold S. Brandes", _
+                .Department = "Operations", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 11, _
+                .ParentID = 3, _
+                .Name = "Michael S. Blevins", _
+                .Department = "Operations", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 12, _
+                .ParentID = 3, _
+                .Name = "Jan K. Sisk", _
+                .Department = "Operations", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 13, _
+                .ParentID = 3, _
+                .Name = "Sidney L. Holder", _
+                .Department = "Operations", _
+                .Position = "Manager" _
+            })
 
-			stuff.Add(New Employee() With {.ID = 6, .ParentID = 2, .Name = "Brian C. Cowling", .Department = "Marketing", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 7, .ParentID = 2, .Name = "Thomas C. Dawson", .Department = "Marketing", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 8, .ParentID = 2, .Name = "Angel M. Wilson", .Department = "Marketing", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 9, .ParentID = 2, .Name = "Bryan R. Henderson", .Department = "Marketing", .Position = "Manager"})
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 14, _
+                .ParentID = 4, _
+                .Name = "James L. Kelsey", _
+                .Department = "Production", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 15, _
+                .ParentID = 4, _
+                .Name = "Howard M. Carpenter", _
+                .Department = "Production", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 16, _
+                .ParentID = 4, _
+                .Name = "Jennifer T. Tapia", _
+                .Department = "Production", _
+                .Position = "Manager" _
+            })
 
-			stuff.Add(New Employee() With {.ID = 10, .ParentID = 3, .Name = "Harold S. Brandes", .Department = "Operations", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 11, .ParentID = 3, .Name = "Michael S. Blevins", .Department = "Operations", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 12, .ParentID = 3, .Name = "Jan K. Sisk", .Department = "Operations", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 13, .ParentID = 3, .Name = "Sidney L. Holder", .Department = "Operations", .Position = "Manager"})
-
-			stuff.Add(New Employee() With {.ID = 14, .ParentID = 4, .Name = "James L. Kelsey", .Department = "Production", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 15, .ParentID = 4, .Name = "Howard M. Carpenter", .Department = "Production", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 16, .ParentID = 4, .Name = "Jennifer T. Tapia", .Department = "Production", .Position = "Manager"})
-
-			stuff.Add(New Employee() With {.ID = 17, .ParentID = 5, .Name = "Judith P. Underhill", .Department = "Finance", .Position = "Manager"})
-			stuff.Add(New Employee() With {.ID = 18, .ParentID = 5, .Name = "Russell E. Belton", .Department = "Finance", .Position = "Manager"})
-			Return stuff
-		End Function
-	End Class
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 17, _
+                .ParentID = 5, _
+                .Name = "Judith P. Underhill", _
+                .Department = "Finance", _
+                .Position = "Manager" _
+            })
+            stuff_Renamed.Add(New Employee() With { _
+                .ID = 18, _
+                .ParentID = 5, _
+                .Name = "Russell E. Belton", _
+                .Department = "Finance", _
+                .Position = "Manager" _
+            })
+            Return stuff_Renamed
+        End Function
+    End Class
 End Namespace

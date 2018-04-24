@@ -12,8 +12,7 @@
     </Window.Resources>
     <Grid>
 
-        <dxg:LookUpEdit Name="lookUpEdit" VerticalAlignment="Top" Width="350" Margin="50,37,67,0" PopupClosed="lookUpEdit_PopupClosed_1"
-                        DisplayMember="Name">
+        <dxg:LookUpEdit Name="lookUpEdit" VerticalAlignment="Top" Width="350" Margin="50,37,67,0" DisplayMember="Name">
             <dxg:LookUpEdit.PopupContentTemplate>
                 <ControlTemplate>
                     <dxg:GridControl x:Name="PART_GridControl" AutoGenerateColumns="AddNew">
